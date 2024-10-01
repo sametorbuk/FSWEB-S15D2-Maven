@@ -3,7 +3,7 @@ package org.example.entity;
 
 import java.util.Objects;
 
-public class Task
+public class Task extends TaskData
 {
 
     private String project;
@@ -23,6 +23,7 @@ public class Task
     }
 
     public Task(String project, String description, String assignee , Status status , Priority priority) {
+        super();
         this.project = project;
         this.description = description;
         this.priority = priority;

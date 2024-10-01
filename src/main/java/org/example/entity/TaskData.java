@@ -17,6 +17,10 @@ public class TaskData {
         this.unassignedTasks = unassignedTasks;
     }
 
+    public TaskData() {
+
+    }
+
     public Set<Task> getAnnsTasks() {
         return annsTasks;
     }
@@ -45,7 +49,7 @@ public class TaskData {
             case "all":
                 return getUnion(annsTasks, getUnion(bobsTasks, carolsTasks));
             default:
-                return Set.of(); // Boş bir set döndür
+                return Set.of();
         }
     }
 
@@ -63,34 +67,19 @@ public class TaskData {
 
 
 
-    public Set<TaskData> getDifferences(Set<Task> taskSet, Set<Task> taskSet2) {
-        Set<TaskData> taskSetCopy = new HashSet<>();
+    public Set<TaskData> getDifferences(Set<Task> set1, Set<Task> set2) {
+        Set<Task> result = new HashSet<>(set1);
+        result.removeAll(set2);
 
-        for (Task task : taskSet2) {
-            for (TaskData taskData : taskSetCopy) {
+        Set<TaskData> taskDataSet = new HashSet<>();
 
-                taskData.getAnnsTasks().remove(task);
-
-                taskData.getBobsTasks().remove(task);
-
-                taskData.getCarolsTasks().remove(task);
-
-                taskData.getUnassignedTasks().remove(task);
-            }
+        for(Task task : result){
+            taskDataSet.add((TaskData) task);
         }
 
-        return taskSetCopy;
+
+        return taskDataSet;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
